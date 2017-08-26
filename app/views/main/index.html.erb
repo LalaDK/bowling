@@ -23,7 +23,7 @@ thead > tr > td {
         <div class="col-xs-7 col-lg-9">
           <select class="form-control" name="date">
             <% (0 .. 14).each do |day| %>
-              <option value="<%= Date.today.next_day(day).strftime("%d-%m-%Y") %>" <%= @date.to_s == Date.today.next_day(day).strftime("%d-%m-%Y").to_s ? "selected" : "" %>><%= Date.today.next_day(day).strftime("%d/%m-%Y") %></option>
+            <option value="<%= Date.today.next_day(day).strftime("%d-%m-%Y") %>" <%= @date.to_s == Date.today.next_day(day).strftime("%d-%m-%Y").to_s ? "selected" : "" %>><%= Date.today.next_day(day).strftime("%d/%m-%Y") %></option>
             <% end %>
           </select>
 
@@ -34,7 +34,7 @@ thead > tr > td {
         <div class="col-xs-7 col-lg-9">
           <select class="form-control" name="time" id="time">
             <% (10 .. 23).each do |time| %>
-              <option value="<%= time %>:00" <%= @time.to_i == time.to_i ? "selected" : "" %>><%= time %>:00</option>
+            <option value="<%= time %>:00" <%= @time.to_i == time.to_i ? "selected" : "" %>><%= time %>:00</option>
             <% end %>
           </select>
         </div>
@@ -42,7 +42,11 @@ thead > tr > td {
       <div class="form-group">
         <label class="control-label col-xs-5 col-lg-3" for="lanes">Antal baner</label>
         <div class="col-xs-7 col-lg-9">
-          <input class="form-control" type="number" name="lanes" value="1" min="1" max="6">
+          <select class="form-control" name="lanes">
+            <% (1 .. 10).each do |lane| %>
+            <option value="<%= lane %>" <%= @lane_count.to_i == lane.to_i ? "selected" : "" %>><%= lane %> <%= lane == 1 ? "bane" : "baner" %></option>
+            <% end %>
+          </select>
         </div>
       </div>
       <button id="submit_button" class="btn btn-primary" style="width:100%;" type="button">Søg</button>
