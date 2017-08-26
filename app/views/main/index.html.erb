@@ -73,7 +73,7 @@ thead > tr > td {
         <tr class="<%= lane.date_match ? "info " : '' %>">
           <td><%= lane.product_name %></td>
           <td><%= lane.time_range %></td>
-          <td><%= DateTime.strptime(lane.date, "%Y-%m-%d %H:%M:%S").strftime("%d-%m-%Y %H:%M") %></td>
+          <td><%= DateTime.strptime(lane.date, "%Y-%m-%d").strftime("%d-%m-%Y %H:%M") %></td>
           <td><%= lane.lanes %></td>
           <td class="<%= !lane.sold_out.blank? ? "danger" : '' %>"><%= lane.sold_out %></td>
           <td><%= DateTime.strptime(lane.last_updated, "%Y-%m-%d %H:%M:%S").strftime("%d-%m-%Y %H:%M") %></td>
