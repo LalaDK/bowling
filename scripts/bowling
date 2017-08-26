@@ -1,0 +1,76 @@
+#! /bin/bash
+if ! `pup --version 2&>/dev/null` ; then
+  echo "'pup' is needed to parse data. Please install it first."
+  echo "https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip"
+  exit 1
+fi
+
+if ! `pup --version 2&>/dev/null` ; then
+  echo "'sqlite3' is needed to store data. Please install it first."
+  exit 1
+fi
+
+if [ "${1}" == "-h" -o "${1}" == "--help" ]; then
+  echo "Usage: bowling [DATE] [TIME] [LANES]"
+  echo -e "\tExample:"
+  echo -e "\tbowling 22-08-2017 18:00 1"
+  exit
+fi
+DATABASE="../db/database.db"
+sqlite3 $DATABASE "CREATE TABLE IF NOT EXISTS bowling (product_name TEXT, time_range TEXT, date TEXT, lanes INTEGER, sold_out TEXT, last_updated TEXT)"
+
+DATOFELT=${1:-$(date +%d-%m-%Y)}
+BOWLINGSTART=${2:-17:00}
+ANTAL_BANER=${3:-1}
+echo "Søger ${ANTAL_BANER} bane(r) d. ${DATOFELT} klokken ${BOWLINGSTART} ..."
+
+VALGTTILBUD=4
+VALGTTILBUDNAME=Bowling
+PAGE=3
+PAGEREAL="antalBaner"
+
+find . -name 'product*.html' -delete
+params="datoFelt=${DATOFELT}&bowlingstart=${BOWLINGSTART}&tAntalBaner=${ANTAL_BANER}&valgtTilbud=${VALGTTILBUD}&valgtTilbudName=${VALGTTILBUDNAME}&page=${PAGE}&pageReal=${PAGEREAL}"
+COOKIE_FILE=cookies.txt
+wget -q -O startpage.html --keep-session-cookies --save-cookies $COOKIE_FILE http://web.flexybox.com/internetbooking/banebooking.asp?cID=200
+rm -f startpage.html
+rm -f result.txt
+
+wget -q --load-cookies $COOKIE_FILE -O output.html http://web.flexybox.com/internetbooking/banebooking.asp --post-data $params
+cat output.html | pup 'table.product-info' > products.html
+csplit -f "product" -b "%i.html" products.html /\<table/ {*} 2&>/dev/null
+
+function parseProduct {
+  if [ -s $1 ]; then
+    PRODUCT="$(cat $1 | pup 'table > tbody > tr:nth-child(1) > td[colspan=3] strong text{}')"
+    PRODUCT=$(echo $PRODUCT | sed -e 's/^\(\s\|\n\)\|\(\s\|\n\)$//g')
+
+    TIME=$(cat $1 | pup 'tr:nth-child(2) td:nth-child(2) strong text{}')
+    TIME=$(echo $TIME | sed -e 's/^\(\s\|\n\)\|\(\s\|\n\)$//g')
+
+    DB_DATE=20"${DATOFELT:(-2)}-${DATOFELT:3:2}-${DATOFELT:0:2} $(echo ${TIME} | cut -c 1-5):00"
+
+    LANE_COUNT=$(cat $1 | pup 'tr:nth-child(2) td:nth-child(3) strong text{}')
+    LANE_COUNT=$(echo $LANE_COUNT | sed -e 's/^\(\s\|\n\)\|\(\s\|\n\)$//g')
+
+    OUT_OF_STOCK=$(cat $1 | grep Udsolgt)
+    OUT_OF_STOCK=$(echo $OUT_OF_STOCK | sed -e 's/^\(\s\|\n\)\|\(\s\|\n\)$//g')
+
+    if [ $(echo $PRODUCT | grep -c EOF) ];
+    then
+      echo -e $PRODUCT"\t\t"$TIME"\t\t"$LANE_COUNT baner"\t"$OUT_OF_STOCK
+      RESULT=$(sqlite3 $DATABASE "SELECT * FROM bowling WHERE product_name = '${PRODUCT}' AND date = '${DB_DATE}' AND time_range = '${TIME}' AND lanes = '${LANE_COUNT}';")
+      if [[ -z $RESULT ]]; then
+        sqlite3 $DATABASE "INSERT INTO bowling (product_name, time_range, date, lanes, sold_out, last_updated) VALUES('${PRODUCT}', '${TIME}', '${DB_DATE}', ${LANE_COUNT}, '${OUT_OF_STOCK}', datetime('now'));"
+      else
+        sqlite3 $DATABASE "UPDATE bowling SET sold_out = '${OUT_OF_STOCK}', last_updated = datetime('now') WHERE product_name = '${PRODUCT}' AND date = '${DB_DATE}' AND time_range = '${TIME}' AND lanes = '${LANE_COUNT}';"
+      fi
+    fi
+  fi
+}
+
+for file in $(find . -iname "product[0-9]*.html")
+do
+  parseProduct $file
+  rm -f $file
+done

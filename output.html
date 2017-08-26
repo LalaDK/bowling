@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>            
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+
+<SCRIPT language="javascript" type="text/javascript">window.onback=history.forward();</SCRIPT>
+
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+		<html>
+		<head><title>FlexyBook Online Booking - Copenhagen Bowl & Event</title>
+		</head>
+			
+
+<SCRIPT language=JavaScript> 
+function IsNumeric(sText)
+{
+   var ValidChars = "0123456789";
+   var IsNumber=true;
+   var Char;
+   for (i = 0; i < sText.length && IsNumber == true; i++) 
+      { 
+      Char = sText.charAt(i); 
+      if (ValidChars.indexOf(Char) == -1) 
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+   }
+function Validate(page1) {
+if (page1.tlf.value == "") {
+alert("Du har ikke indtastet et telefonnummer"); 
+return (false);
+}
+var v1=arguments[0].tlf.value
+var v2=v1.replace(/[^0-9]/g,"")
+if(v1!=v2){alert("Telefonnummer må kun indeholde tal!");arguments[0].tlf.focus();return false}
+var _x=page1.tlf.value;
+var _exp = new RegExp(/^\d+$/);
+if(_x.length!=8) { alert("Et telefonnummer skal indeholde 8 tegn!");
+return (false); 
+}
+return true
+}
+
+var curDate;
+var curDateOver;
+function selDate(myDate) {
+	if(curDate!=null) {
+		curDate.className = 'kalenderDato'	
+	}
+	document.forms.page2.datoFelt.value = myDate.id
+	document.getElementById('selectedDate').innerText =  myDate.id
+	selectedDate
+	curDate = myDate
+	myDate.className='kalenderDatoSelected'
+	//myDate.bgColor = '#BC3587'	
+}
+function chooseOffer(myID,myName,myPic) {
+	document.forms.page3.valgtTilbud.value = myID
+	document.forms.page3.valgtTilbudName.value = myName
+	document.forms.page3.valgtTilbudPic.value = myPic
+	document.forms.page3.submit();
+}
+function selDateOver(myDate) {
+	if(curDate!=null) {
+		if(curDate.id == myDate.id) {
+			return;
+		}
+	}
+	myDate.className = 'kalenderDatoOver'
+
+	//myDate.bgColor = '#9966CC'	
+}
+function clearMe(myDate) {
+	if(curDate!=null) {
+		if(curDate.id == myDate.id) {
+			return;
+		}
+	}
+	myDate.className = 'kalenderDato'
+	//myDate.bgColor = ''	
+}
+
+
+function Validate2(page2) {
+if (page2.datoFelt.value == "") {
+	alert("Du har ikke valgt nogen dato"); 
+	return (false);
+}
+if (page2.bowlingstart.selectedIndex == 0) {
+	alert("Du har ikke valgt et tidspunkt"); 
+	page2.bowlingstart.focus();
+	return (false);
+}
+
+return (true);
+} 
+
+function Validate10(page2) {
+if (page2.tAntalBaner.selectedIndex == 0 ) {
+	alert("Du skal enten vælge antal personer eller antal baner"); 
+	page2.tAntalBaner.focus();
+	return (false);
+}
+
+return (true);
+} 
+
+function Validate3(page3) {
+if (page3.dato.value == "") {
+alert("Du har ikke indtastet nogen dato"); 
+return (false);
+}
+return (true);
+} 
+
+</script>
+<script language="JavaScript" src="common.js"></script>
+<body>
+
+
+
+	<!-- AddThis Button BEGIN 
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=xa-4d74919139e7bc8c" 
+      addthis:title="Bowling hos BowlnFun" 
+      addthis:description="Jeg har netop bestilt bowling hos BowlnFun til d. 01-01-2011, kl 20:00"
+	  addthis:url="http://www.scoding.dk" 
+	  
+	  
+      
+
+>
+<img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4d74919139e7bc8c"></script>
+ AddThis Button END -->
+	
+<table border="0" cellpadding="0" cellspacing="0" width="100%" ><tr><td >
+<table class="table2" border="0"  cellspacing="0" cellpadding="0" align="center" >
+  <tr><td>
+  
+  <table width=800px border="0" cellspacing="0" cellpadding="0" class="Headtable"><tr ><td class="billedtabel">
+
+
+  </td></tr></table>
+	<table height="540px" width=800px border="0" cellspacing="0" cellpadding="0" class="Headtable">
+	  <tr valign="top" >
+<!--Venstremenu -->
+<style type="text/css">
+    <!--
+    .style58 {
+        font-size: 10px;
+    }
+
+    .style59 {
+        font-size: 12px;
+    }
+    -->
+</style>
+
+<td width="150" class=venstreTabel height="100%">
+    <br>
+    <table class="miniTxt miniTxt2 limitVenstreTabel">
+        <tr class="WelcomeMessage">
+            <td width="5"></td>
+            <td width="200">
+                <font class="miniTxt  miniTxt2 ">
+                    Copenhagen Bowl & Event<br>
+                    Online booking<br>
+                    <br>
+                    
+                    Velkommen !
+                     <br>
+                    
+                    <a onclick="formLogin.submit();return false;" href="#">Login</a>
+                    
+                    <form name="formLogin" action="banebooking.asp" method="post">
+                        <input name="doLogin" type="hidden" value="1">
+                    </form>
+                    
+                    <span class"=smallText">
+                        <font color="#FF0000" size="2px">
+                            Bemærk!<br>
+                            <br>
+
+                            Ved Sweetdeal og Downtown SKAL koden også medbringes på datoen.<br><br>
+                        </font>
+                    </span>
+
+                    
+
+
+
+
+            </td>
+
+        </tr>
+        
+        <tr>
+            <td width="5"></td>
+            <td width="200">
+                <strong>
+                    
+                    Din bestilling
+                    
+                </strong>
+            </td>
+        </tr>
+        <tr>
+            <td width="5"></td>
+            <td width="200">
+                
+                Dato:
+                
+
+                <b>29-08-2017</b>
+                <br />
+
+                
+                Tid:
+                
+
+                <b>19:00</b>
+                <br />
+                
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td width="5"></td>
+            <td width="200"></td>
+        </tr>
+        
+        <tr>
+            <td width="5"></td>
+            <td width="200">
+                
+                Tilbud:
+                
+            </td>
+        </tr>
+        <tr>
+            <td width="5"></td>
+            <td>
+                <b>Bowling</b>
+            </td>
+        </tr>
+        
+
+    </table>
+
+</td>
+
+<td width="10">&nbsp;</td>
+
+<td width="600" class=mainT align=center>	
+
+
+
+
+<br><div class="progress-wrapper"><table cellspacing="0" cellpadding="2" width="600" class=topNavStyle>
+  <tr>
+
+	<td align="center" class="minitxt"><img class=inActiveBt  src="transparent.gif" /><div class='menu-text'>Vælg<br>dato</div></td>
+
+	<td align="center" class="minitxt"><img class=inActiveBt  src="transparent.gif" /><div class='menu-text'>Vælg<br>tilbud</div></td>
+
+	<td align="center" class="minitxt"><img class=inActiveBt  src="transparent.gif" /><div class='menu-text'>Vælg<br>menu</div></td>
+
+	<td align="center" class="minitxt"><img class=activeBt src="transparent.gif" /><div class='menu-text'>Vælg<br>tidspunkt</div></td>
+	
+	<td align="center" class="minitxt"><img class=inActiveBt  src="transparent.gif" /><div class='menu-text'>Tilkøb<br>&nbsp;</div></td>
+
+	<td align="center" class="minitxt"><img class=inActiveBt  src="transparent.gif" /><div class='menu-text'>Kunde<br>oplysninger</div></td>
+
+	<td align="center" class="minitxt"><img class=inActiveBt  src="transparent.gif" /><div class='menu-text'>Din<br>bestilling</div></td>
+
+  </tr>
+</table></div>
+<br>
+
+
+<style type="text/css">
+<!--
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="page-title">
+    <td>&nbsp;</td>
+    <td class="sFed" align="right">V&aelig;lg Tidspunkt </td>
+  </tr>
+  <tr class="page-title">
+    <td>&nbsp;</td>
+    <td align="right"><table border="0" cellpadding="0" cellspacing="1">
+        <tr >
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+		  <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+          <td width=8 height=8 class="horLine"></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right"><div align="left"><br>
+	
+	      Systemet giver dig automatisk muligheder p&aring; det valgte ankomsttidspunkt.<br>
+	Ved 'Udsolgt' kontakt centeret for yderligere information<br>
+	      <br>
+
+
+Klik p&aring; et forslag for at komme videre. &nbsp; <br>
+	
+
+
+    </div></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td class="vertical-spacing" align="right">
+	
+	
+		  <div align="left">
+		      
+		    </div>
+		  <hr class="horLine" size="1" width="100%" align="center"/>
+	  		<form action="banebooking.asp" name="tForm3" method="post" >
+	  <table class="product-combo" width="100%"  border="0" cellpadding="0" cellspacing="0" >
+
+		<input type="hidden" name="page" value="7">
+		<input type="hidden" name="nextPage" value="kundeOpret">
+
+            <tr  onMouseOver="this.className='mouseOver'" onMouseOut="this.className=''" style='cursor: default' >
+
+              <td width="25%"><img src="ownPictures/" width="75" height="75" border="0"/> </td>
+              <td width="75%"><table class="product-info" width="100%"  border="0" cellpadding="0" cellspacing="0">
+			  		<tr>
+						<td colspan="3"><strong>Bowling - 2 timer</strong> <br>
+						  <br>
+</td>
+			            <td width="150">
+ 
+                <span class="style1">Udsolgt</span>
+                </td>
+		  		</tr>
+			  
+					 <tr>
+						<td>Bowling</td>
+						<td><strong>19:00 - 21:00</strong></td>
+						<td><strong>1</strong>  baner <input name="valgtBaneType" type="hidden" value="Bowling" />
+						<input name="valgtTidBowling" type="hidden" value="19:00" />
+						<input name="valgtTidTilBowling" type="hidden" value="21:00" />
+						<input name="valgtBaneAntal" type="hidden" value="1" />
+						<input name="valgtBaneSelect" type="hidden" value="3" />
+						<input name="valgtBaneSelectType" type="hidden" value="3" />
+						
+						</td>
+			    </tr>
+					
+                </table>
+              </td>
+            </tr>
+
+      </table>
+		</form>
+
+		    </div>
+		  <hr class="horLine" size="1" width="100%" align="center"/>
+	  		<form action="banebooking.asp" name="tForm4" method="post" >
+	  <table class="product-combo" width="100%"  border="0" cellpadding="0" cellspacing="0" >
+
+		<input type="hidden" name="page" value="7">
+		<input type="hidden" name="nextPage" value="kundeOpret">
+
+            <tr  onMouseOver="this.className='mouseOver'" onMouseOut="this.className=''" style='cursor: default' >
+
+              <td width="25%"><img src="ownPictures/" width="75" height="75" border="0"/> </td>
+              <td width="75%"><table class="product-info" width="100%"  border="0" cellpadding="0" cellspacing="0">
+			  		<tr>
+						<td colspan="3"><strong>Bowling - 1 time</strong> <br>
+						  <br>
+</td>
+			            <td width="150">
+ 
+                <span class="style1">Udsolgt</span>
+                </td>
+		  		</tr>
+			  
+					 <tr>
+						<td>Bowling</td>
+						<td><strong>19:00 - 20:00</strong></td>
+						<td><strong>1</strong>  baner <input name="valgtBaneType" type="hidden" value="Bowling" />
+						<input name="valgtTidBowling" type="hidden" value="19:00" />
+						<input name="valgtTidTilBowling" type="hidden" value="20:00" />
+						<input name="valgtBaneAntal" type="hidden" value="1" />
+						<input name="valgtBaneSelect" type="hidden" value="3" />
+						<input name="valgtBaneSelectType" type="hidden" value="1" />
+						
+						</td>
+			    </tr>
+					
+                </table>
+              </td>
+            </tr>
+
+      </table>
+		</form>
+
+	
+
+	
+	
+<hr class="horLine" size="1" width="100%" align="center"/>
+	</td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right"><br>
+	
+
+			
+
+</td>
+  </tr>
+  
+  
+  
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right">
+	
+	
+		 
+      <div align="left">
+        <br><font class='lFedColor'><br>Alternative muligheder med andet starttidspunkt</font>
+	  </div>
+      <hr class="horLine" size="1" width="100%" align="center"/>
+<form action="banebooking.asp" name="tForm1" method="post" >
+	  <table  class="product-combo" width="100%"  border="0" cellpadding="0" cellspacing="0" >
+	  		
+		<input type="hidden" name="page" value="7">
+		<input type="hidden" name="nextPage" value="kundeOpret">
+
+            <tr  onMouseOver="this.className='mouseOver'" onMouseOut="this.className=''" style='cursor: default' >
+
+              <td width="25%"><img src="ownPictures/" width="75" height="75" border="0"/> </td>
+              <td width="75%"><table width="100%" class="product-info"  border="0" cellpadding="0" cellspacing="0">
+			  		<tr>
+						<td colspan="3"><strong>Bowling - 2 timer</strong> <br>
+						  <br>
+</td>
+			            <td width="150"> 
+                <span class="style1">Udsolgt</span>
+                </td>
+		  		</tr>
+			  
+					 <tr>
+						<td>Bowling</td>
+						<td><strong>18:00 - 20:00</strong></td>
+						<td><strong>1</strong> baner 
+						<input name="valgtBaneType" type="hidden" value="Bowling" />
+						<input name="valgtTidBowling" type="hidden" value="18:00" />
+						<input name="valgtTidTilBowling" type="hidden" value="20:00" />
+						<input name="valgtBaneAntal" type="hidden" value="1" />
+						<input name="valgtBaneSelect" type="hidden" value="3" />
+						<input name="valgtBaneSelectType" type="hidden" value="3" />
+						
+						</td>
+			    </tr>
+				  		
+					
+                </table>
+              </td>
+            </tr>
+		
+      </table>
+</form>
+
+	  </div>
+      <hr class="horLine" size="1" width="100%" align="center"/>
+<form action="banebooking.asp" name="tForm2" method="post" >
+	  <table  class="product-combo" width="100%"  border="0" cellpadding="0" cellspacing="0" >
+	  		
+		<input type="hidden" name="page" value="7">
+		<input type="hidden" name="nextPage" value="kundeOpret">
+
+            <tr  onMouseOver="this.className='mouseOver'" onMouseOut="this.className=''" style='cursor: pointer' 	onClick="document.forms.tForm2.submit();" >
+
+              <td width="25%"><img src="ownPictures/" width="75" height="75" border="0"/> </td>
+              <td width="75%"><table width="100%" class="product-info"  border="0" cellpadding="0" cellspacing="0">
+			  		<tr>
+						<td colspan="3"><strong>Bowling - 1 time</strong> <br>
+						  <br>
+</td>
+			            <td width="150"></td>
+		  		</tr>
+			  
+					 <tr>
+						<td>Bowling</td>
+						<td><strong>18:00 - 19:00</strong></td>
+						<td><strong>1</strong> baner 
+						<input name="valgtBaneType" type="hidden" value="Bowling" />
+						<input name="valgtTidBowling" type="hidden" value="18:00" />
+						<input name="valgtTidTilBowling" type="hidden" value="19:00" />
+						<input name="valgtBaneAntal" type="hidden" value="1" />
+						<input name="valgtBaneSelect" type="hidden" value="3" />
+						<input name="valgtBaneSelectType" type="hidden" value="1" />
+						
+						</td>
+			    </tr>
+				  		
+					
+                </table>
+              </td>
+            </tr>
+		
+      </table>
+</form>
+
+	  </div>
+      <hr class="horLine" size="1" width="100%" align="center"/>
+<form action="banebooking.asp" name="tForm5" method="post" >
+	  <table  class="product-combo" width="100%"  border="0" cellpadding="0" cellspacing="0" >
+	  		
+		<input type="hidden" name="page" value="7">
+		<input type="hidden" name="nextPage" value="kundeOpret">
+
+            <tr  onMouseOver="this.className='mouseOver'" onMouseOut="this.className=''" style='cursor: pointer' 	onClick="document.forms.tForm5.submit();" >
+
+              <td width="25%"><img src="ownPictures/" width="75" height="75" border="0"/> </td>
+              <td width="75%"><table width="100%" class="product-info"  border="0" cellpadding="0" cellspacing="0">
+			  		<tr>
+						<td colspan="3"><strong>Bowling - 1 time</strong> <br>
+						  <br>
+</td>
+			            <td width="150"></td>
+		  		</tr>
+			  
+					 <tr>
+						<td>Bowling</td>
+						<td><strong>20:00 - 21:00</strong></td>
+						<td><strong>1</strong> baner 
+						<input name="valgtBaneType" type="hidden" value="Bowling" />
+						<input name="valgtTidBowling" type="hidden" value="20:00" />
+						<input name="valgtTidTilBowling" type="hidden" value="21:00" />
+						<input name="valgtBaneAntal" type="hidden" value="1" />
+						<input name="valgtBaneSelect" type="hidden" value="3" />
+						<input name="valgtBaneSelectType" type="hidden" value="1" />
+						
+						</td>
+			    </tr>
+				  		
+					
+                </table>
+              </td>
+            </tr>
+		
+      </table>
+</form>
+
+	
+
+	
+	
+<hr class="horLine" size="1" width="100%" align="center"/>
+
+	</td>
+  </tr>
+  
+  
+  
+  
+  
+  
+  <form name="form1" method="post" action="">
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right" valign="top" class="newtime-row">
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><div align="right"> &Oslash;nsker I at ankomme p&aring; et andet tidspunkt?  &nbsp;</div></td>
+    <td width="50">
+		
+						<input onClick="form3.submit();return false;" name="imageField" type="image" src="knap_tid.gif"  border="0">
+						
+	
+	
+	</td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right" valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><div align="right"> &Oslash;nsker I at v&aelig;lge et andet tilbud? &nbsp; </div></td>
+        <td width="50">
+				
+						<input onClick="form333.submit();return false;" name="imageField" type="image" src="knap_tilbud.gif" width="68" height="25" border="0">
+						
+		
+		
+		
+		
+		</td>
+      </tr>
+    </table>      
+    	  <input type="hidden" name="page" value="2"></td>
+  </tr>
+  </form>
+</table>
+<br>
+<form name="form3" method="post" action="">
+        <input type="hidden" name="page" value="1">
+</form>
+
+<form name="form333" method="post" action="">
+        <input type="hidden" name="page" value="2">
+</form>
+<!--
+<form action="banebooking.asp" name="page1" method="post" onSubmit="return Validate(page1)" >
+<input type="hidden" name="page" value="4">
+
+	<table align="center" valign="center">
+	<tr><td>
+
+			<table align="center" valign="center">
+			<tr><td align="center"><B><FlexyBox Internet Booking</font></B></td></tr>
+			
+			<tr>
+			<td>
+				<table align="center">
+				<tr>				
+				<td align="center" class="tekst">Indtast brugernavn/password for at begynde
+				<br><br><input type="text" name="username"><br>
+				<input type="Password" name="password"><br>
+				<input type="image" src="videre.gif" value="Login"><br></td>
+				</tr>
+				</table>
+			</td>
+			</tr>
+			
+			</table>
+
+		
+
+	</td></tr>
+	</table>
+
+</form>
+-->
+
+		</td>
+		<td class="main-space right" width="10">&nbsp;</td>
+		
+		</tr>
+		
+		
+		
+	</table>
+	</td>
+		</tr>
+	</table>
+		
+
+	<Div align="center" class="bottomText">
+						
+						<font color="#666666" size="1" face="Verdana, Arial, Helvetica, sans-serif">
+	<br>FlexyBook Online Booking - Copenhagen Bowl & Event</font>
+						
+
+	</Div>	
+
+</body>
+</html>
+</td></tr></table>
+
+	
