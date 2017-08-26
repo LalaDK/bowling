@@ -21,10 +21,12 @@ thead > tr > td {
       <div class="form-group">
         <label class="control-label col-xs-5 col-lg-3" for="date">Dato</label>
         <div class="col-xs-7 col-lg-9">
-          <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-            <input class="form-control" type="text" name="date" value="<%= @date %>" />
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-          </div>
+          <select class="form-control" name="date">
+            <% (0 .. 14).each do |day| %>
+              <option value="<%= Date.today.next_day(day).strftime("%d-%m-%Y") %>" <%= @date.to_s == Date.today.next_day(day).strftime("%d-%m-%Y").to_s ? "selected" : "" %>><%= Date.today.next_day(day).strftime("%d/%m-%Y") %></option>
+            <% end %>
+          </select>
+
         </div>
       </div>
       <div class="form-group">
@@ -73,10 +75,10 @@ thead > tr > td {
         <tr class="<%= lane.date_match ? "info " : '' %>">
           <td><%= lane.product_name %></td>
           <td><%= lane.time_range %></td>
-          <td><%= DateTime.strptime(lane.date, "%Y-%m-%d").strftime("%d-%m-%Y %H:%M") %></td>
+          <td><%= DateTime.strptime(lane.date, "%Y-%m-%d").strftime("%d/%m-%Y") %></td>
           <td><%= lane.lanes %></td>
           <td class="<%= !lane.sold_out.blank? ? "danger" : '' %>"><%= lane.sold_out %></td>
-          <td><%= DateTime.strptime(lane.last_updated, "%Y-%m-%d %H:%M:%S").strftime("%d-%m-%Y %H:%M") %></td>
+          <td><%= DateTime.strptime(lane.last_updated, "%Y-%m-%d %H:%M:%S").strftime("%d/%m-%Y %H:%M") %></td>
         </tr>
         <% end %>
       </tbody>
