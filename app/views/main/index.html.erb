@@ -83,7 +83,7 @@ a {
       </thead>
       <tbody>
         <% @lanes.sort_by{|a| a.time_range}.each do |lane| %>
-        <tr class="<%= [(lane.date_match ? "info" : ''), (!lane.sold_out.blank? ? "danger" : '')].compact.join(" ") %>">
+        <tr class="<%= lane.date_match ? "info" : '' %>">
           <td>
             <%= lane.product_name %> (<%= lane.time_range %>)
             <% if !lane.sold_out.blank? %>
