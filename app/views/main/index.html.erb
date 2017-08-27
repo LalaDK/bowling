@@ -76,11 +76,6 @@ a {
   <% end %>
   <div class=".table-responsive">
     <table class="table table-bordered" style="background-color:white;">
-      <thead>
-        <tr>
-          <td>Beskrivelse</td>
-        </tr>
-      </thead>
       <tbody>
         <% @lanes.sort_by{|a| a.time_range}.each do |lane| %>
         <tr class="<%= lane.date_match ? "info" : '' %>">
@@ -97,6 +92,9 @@ a {
             </span>
           </td>
         </tr>
+        <% end %>
+        <% if @lanes.empty? %>
+          <tr><td><center><i>Ingen resultater fundet.</i></center></td></tr>
         <% end %>
       </tbody>
     </table>
