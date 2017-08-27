@@ -59,7 +59,7 @@ a {
 
 <div class="col-lg-12">
   <br><br>
-  <% if @lanes.none?{|lane| lane.date_match} %>
+  <% if @search_performed && @lanes.none?{|lane| lane.date_match} %>
   <div class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     Søgningen gav intet resultat.
