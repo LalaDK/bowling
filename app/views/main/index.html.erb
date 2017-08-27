@@ -4,15 +4,24 @@ td {
   background-color: white;
 }
 
-.info {
+.info:not(span) {
   font-weight: bold !important;
 }
 
-thead > tr > td {
-  font-weight: bold !important;
+.small-text {
+  font-weight: normal !important;
+  font-style: italic;
 }
 a {
   color: black;
+}
+
+.small-text {
+  font-size: 10pt;
+}
+
+.udsolgt {
+  color: red;
 }
 </style>
 
@@ -70,20 +79,22 @@ a {
       <thead>
         <tr>
           <td>Beskrivelse</td>
-          <td>Senest opdateret</td>
         </tr>
       </thead>
       <tbody>
         <% @lanes.sort_by{|a| a.time_range}.each do |lane| %>
         <tr class="<%= [(lane.date_match ? "info" : ''), (!lane.sold_out.blank? ? "danger" : '')].compact.join(" ") %>">
           <td>
-            <%= lane.product_name %> (<%= lane.time_range %>)<br>
+            <%= lane.product_name %> (<%= lane.time_range %>)
+            <% if !lane.sold_out.blank? %>
+              <span class="udsolgt">(UDSOLGT)</span>
+            <% end %>
+            <br>
             Antal baner: <%= lane.lanes %><br>
-            <span class="udsolgt"></span>
-          </td>
-          <td>
-            Seneste opdateret:<br>
-            <%= DateTime.strptime(lane.last_updated, "%Y-%m-%d %H:%M:%S").strftime("%d/%m-%Y %H:%M") %>
+
+            <span class="small-text">
+            Seneste opdateret: <%= DateTime.strptime(lane.last_updated, "%Y-%m-%d %H:%M:%S").strftime("%d/%m-%Y %H:%M") %>
+            </span>
           </td>
         </tr>
         <% end %>
