@@ -66,26 +66,25 @@ a {
   </div>
   <% end %>
   <div class=".table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="background-color:white;">
       <thead>
         <tr>
-          <td>Produktnavn</td>
-          <td>Tidspunkt</td>
-          <td>Dato</td>
-          <td>Antal baner</td>
-          <td>Udsolgt</td>
+          <td>Beskrivelse</td>
           <td>Senest opdateret</td>
         </tr>
       </thead>
       <tbody>
         <% @lanes.sort_by{|a| a.time_range}.each do |lane| %>
-        <tr class="<%= lane.date_match ? "info" : '' %>">
-          <td><%= lane.product_name %></td>
-          <td><%= lane.time_range %></td>
-          <td><%= DateTime.strptime(lane.date, "%Y-%m-%d").strftime("%d/%m-%Y") %></td>
-          <td><%= lane.lanes %></td>
-          <td class="<%= !lane.sold_out.blank? ? "danger" : '' %>"><%= lane.sold_out %></td>
-          <td><%= DateTime.strptime(lane.last_updated, "%Y-%m-%d %H:%M:%S").strftime("%d/%m-%Y %H:%M") %></td>
+        <tr class="<%= [(lane.date_match ? "info" : ''), (!lane.sold_out.blank? ? "danger" : '')].compact.join(" ") %>">
+          <td>
+            <%= lane.product_name %> (<%= lane.time_range %>)<br>
+            Antal baner: <%= lane.lanes %><br>
+            <span class="udsolgt"></span>
+          </td>
+          <td>
+            Seneste opdateret:<br>
+            <%= DateTime.strptime(lane.last_updated, "%Y-%m-%d %H:%M:%S").strftime("%d/%m-%Y %H:%M") %>
+          </td>
         </tr>
         <% end %>
       </tbody>
