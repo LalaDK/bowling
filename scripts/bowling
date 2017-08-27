@@ -74,3 +74,5 @@ do
   parseProduct $file
   rm -f $file
 done
+
+rm -f output.html products.html cookies.txt

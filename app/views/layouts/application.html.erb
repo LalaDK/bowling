@@ -17,6 +17,7 @@
     background: linear-gradient(45deg, #3b679e 0%,#2b88d9 50%,#207cca 51%,#7db9e8 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b679e', endColorstr='#7db9e8',GradientType=1 );
   }
+  body, .info { scroll-behavior: smooth }
 
   div.cssload-content {
     margin: auto;
@@ -217,6 +218,11 @@
 
   <script>
   $( document ).ready(function() {
+    var element = document.getElementsByClassName("info")[0];
+    if(element) {
+      zenscroll.to(element);
+      $(".info").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
+    }
     $("#submit_button").on("click", function() {
       $("#submit_button").attr('disabled', 'disabled');
       $("#spinner").show();
@@ -238,5 +244,6 @@
   <div class="container-fluid" style="height: 100%;">
     <%= yield %>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zenscroll/4.0.0/zenscroll-min.js"></script>
 </body>
 </html>

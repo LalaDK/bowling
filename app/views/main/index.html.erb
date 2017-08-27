@@ -11,10 +11,13 @@ td {
 thead > tr > td {
   font-weight: bold !important;
 }
+a {
+  color: black;
+}
 </style>
 
 <div class="col-lg-4">
-  <h3><img src="http://pngimg.com/uploads/bowling/bowling_PNG52.png" width="50"> <b><i>Lanes & Lounges</i></b></h3>
+  <a href="/"><h3><img src="http://pngimg.com/uploads/bowling/bowling_PNG52.png" width="50"> <b><i>Lanes & Lounges</i></b></h3></a>
   <div class="form-horizontal">
     <form method="post" action="/" id="search_form">
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
@@ -75,8 +78,8 @@ thead > tr > td {
         </tr>
       </thead>
       <tbody>
-        <% @lanes.each do |lane| %>
-        <tr class="<%= lane.date_match ? "info " : '' %>">
+        <% @lanes.sort_by{|a| a.time_range}.each do |lane| %>
+        <tr class="<%= lane.date_match ? "info" : '' %>">
           <td><%= lane.product_name %></td>
           <td><%= lane.time_range %></td>
           <td><%= DateTime.strptime(lane.date, "%Y-%m-%d").strftime("%d/%m-%Y") %></td>
