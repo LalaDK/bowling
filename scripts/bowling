@@ -61,9 +61,9 @@ function parseProduct {
       echo -e $PRODUCT"\t\t"$TIME"\t\t"$LANE_COUNT baner"\t"$OUT_OF_STOCK
       RESULT=$(sqlite3 $DATABASE "SELECT * FROM bowling WHERE product_name = '${PRODUCT}' AND date = '${DB_DATE}' AND time_range = '${TIME}' AND lanes = '${LANE_COUNT}';")
       if [[ -z $RESULT ]]; then
-        sqlite3 $DATABASE "INSERT INTO bowling (product_name, time_range, date, lanes, sold_out, last_updated) VALUES('${PRODUCT}', '${TIME}', '${DB_DATE}', ${LANE_COUNT}, '${OUT_OF_STOCK}', datetime('now'));"
+        sqlite3 $DATABASE "INSERT INTO bowling (product_name, time_range, date, lanes, sold_out, last_updated) VALUES('${PRODUCT}', '${TIME}', '${DB_DATE}', ${LANE_COUNT}, '${OUT_OF_STOCK}', datetime('now', 'localtime'));"
       else
-        sqlite3 $DATABASE "UPDATE bowling SET sold_out = '${OUT_OF_STOCK}', last_updated = datetime('now') WHERE product_name = '${PRODUCT}' AND date = '${DB_DATE}' AND time_range = '${TIME}' AND lanes = '${LANE_COUNT}';"
+        sqlite3 $DATABASE "UPDATE bowling SET sold_out = '${OUT_OF_STOCK}', last_updated = datetime('now', 'localtime') WHERE product_name = '${PRODUCT}' AND date = '${DB_DATE}' AND time_range = '${TIME}' AND lanes = '${LANE_COUNT}';"
       fi
     fi
   fi

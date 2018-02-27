@@ -1,0 +1,2 @@
+  [1m[36mLane Load (3.9ms)[0m  [1m[34mSELECT "bowling".* FROM "bowling"[0m
+  [1m[36mLane Load (1.5ms)[0m  [1m[34mSELECT "bowling".* FROM "bowling" WHERE (date LIKE '%2017-09-08%')[0m
